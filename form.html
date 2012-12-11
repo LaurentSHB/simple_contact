@@ -1,0 +1,23 @@
+<form action="http://localhost:4567" id="form" method="post">
+	<input type="text" name="nom" id="nom">
+	<input type="text" name="email">
+	<textarea name="message"></textarea>
+	<input type="submit" onclick="send_data()" val="Envoyer">
+</form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+function send_data(){
+	$('#form').on('submit', function() {
+    // appel Ajax
+    $.ajax({
+        url: $(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+        type: $(this).attr('method'), // la méthode indiquée dans le formulaire (get ou post)
+        data: $(this).serialize(), // je sérialise les données (voir plus loin), ici les $_POST
+        complete: function(html) { // je récupère la réponse du fichier PHP
+            alert(html); // j'affiche cette réponse
+        }
+    });
+		return false; // j'empêche le navigateur de soumettre lui-même le formulaire
+  });
+}
+</script>
