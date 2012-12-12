@@ -1,2 +1,2 @@
-require './maries_contact'
+require './simple_contact'
 run Sinatra::Application
